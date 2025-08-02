@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dyslexia Screening Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Dyslexia Screening Tool</h1>
+            <p>AI-powered handwriting analysis for early detection</p>
+        </div>
+        
+        <div class="options-container">
+            <div class="option-card" id="upload-option">
+                <div class="option-content">
+                    <div class="option-icon">📁</div>
+                    <div class="option-title">Upload Sample</div>
+                    <div class="option-description">
+                        Upload a handwriting image from your device
+                    </div>
+                </div>
+            </div>
+            
+            <div class="option-card" id="capture-option">
+                <div class="option-content">
+                    <div class="option-icon">📷</div>
+                    <div class="option-title">Live Photo</div>
+                    <div class="option-description">
+                        Capture handwriting using your camera
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="upload-section" id="upload-section">
+            <h3>📤 Upload Handwriting Sample</h3>
+            <input type="file" id="file-input" class="file-input" accept="image/*">
+            <button class="upload-button" onclick="document.getElementById('file-input').click()">
+                Choose Image File
+            </button>
+            <div class="file-info">
+                📋 Supported: JPG, PNG, GIF, WebP • Max: 10MB
+            </div>
+        </div>
+
+        <div class="camera-section" id="camera-section">
+            <h3>📸 Capture Handwriting Sample</h3>
+            <video id="video" autoplay playsinline muted></video>
+            <canvas id="canvas" style="display: none;"></canvas>
+            <div class="camera-controls">
+                <button class="capture-button" id="start-camera">Start Camera</button>
+                <button class="capture-button" id="capture-photo" style="display: none;">Capture Photo</button>
+                <button class="capture-button" id="stop-camera" style="display: none;">Stop Camera</button>
+            </div>
+        </div>
+
+        <div class="preview-section" id="preview-section">
+            <h3>👁️ Preview & Submit</h3>
+            <img id="preview-image" class="preview-image" alt="Handwriting Preview">
+            <div class="action-buttons">
+                <button class="submit-button" id="submit-button">
+                    🔍 Analyze Handwriting
+                </button>
+                <button class="reset-button" id="reset-button">
+                    🔄 Start Over
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

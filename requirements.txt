@@ -1,0 +1,29 @@
+# Web framework
+flask
+werkzeug
+
+# Deep learning
+torch
+torchvision
+torchaudio
+
+# Image processing
+opencv-python
+Pillow
+
+# OCR
+pytesseract
+
+# NLP + features
+nltk
+pyspellchecker
+fuzzy           # <--- For doublemetaphone()
+textdistance
+
+# Data processing
+pandas
+scikit-learn
+
+# Google Gemini API
+google-generativeai
+

@@ -1,0 +1,606 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dyslexia Analysis Results</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <style>
+        .container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .button {
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .button {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Analysis</h1>
+            <p>Here are the results from your handwriting analysis</p>
+        </div>
+
+        #Result for Positive Dyslexia Detection 
+        <div class="result-container" id="positiveResult" style="display: none;">
+            <div class="result-positive">
+                <div class="result-title">
+                    <span class="result-icon">⚠️</span>
+                    Dyslexia Indicators Detected
+                </div>
+                <div class="result-description">
+                    Based on our analysis, we've identified patterns in your handwriting that may indicate dyslexia. Please note that this is a preliminary assessment and should be discussed with a healthcare professional for proper diagnosis.
+                </div>
+                
+                <div class="confidence-bar">
+                    <div class="confidence-fill confidence-medium" id="confidenceBar" style="width: 75%;"></div>
+                </div>
+                <div class="confidence-text">Confidence Level: <span id="confidenceLevel">75%</span></div>
+            </div>
+
+            <div class="text-section">
+                <h3>📝 Corrected Text</h3>
+                <div class="text-content" id="correctedText">
+                    The quick brown fox jumps over the lazy dog. This is a sample text that demonstrates various letter formations and spacing patterns.
+                </div>
+            </div>
+
+            <div class="suggestions-section">
+                <h3>💡 Recommendations & Support</h3>
+                <div class="suggestion-item">
+                    <div class="suggestion-title">Reading Techniques</div>
+                    <div class="suggestion-text">Use a ruler or finger to track lines while reading. Consider using colored overlays or special fonts designed for dyslexia.</div>
+                </div>
+                <div class="suggestion-item">
+                    <div class="suggestion-title">Writing Support</div>
+                    <div class="suggestion-text">Practice letter formation with large, spaced letters. Use graph paper to help with spacing and alignment.</div>
+                </div>
+                <div class="suggestion-item">
+                    <div class="suggestion-title">Professional Support</div>
+                    <div class="suggestion-text">Consider consulting with a learning specialist or educational psychologist for comprehensive assessment and personalized strategies.</div>
+                </div>
+                <div class="suggestion-item">
+                    <div class="suggestion-title">Technology Tools</div>
+                    <div class="suggestion-text">Explore text-to-speech software, spell checkers, and apps designed specifically for dyslexic learners.</div>
+                </div>
+            </div>
+        </div>
+
+        #Result for Negative Dyslexia Detection 
+        <div class="result-container" id="negativeResult" style="display: none;">
+            <div class="result-negative">
+                <div class="result-title">
+                    <span class="result-icon">✅</span>
+                    No Dyslexia Indicators Detected
+                </div>
+                <div class="result-description">
+                    Great news! Our analysis of your handwriting sample shows no significant indicators of dyslexia. Your writing patterns appear to be within normal ranges. However, if you continue to experience reading or writing difficulties, we recommend consulting with a healthcare professional.
+                </div>
+                
+                <div class="confidence-bar">
+                    <div class="confidence-fill confidence-high" style="width: 90%;"></div>
+                </div>
+                <div class="confidence-text">Confidence Level: 90%</div>
+            </div>
+
+            <div class="text-section">
+                <h3>📝 Analyzed Text</h3>
+                <div class="text-content">
+                    The quick brown fox jumps over the lazy dog. This is a sample text that demonstrates various letter formations and spacing patterns.
+                </div>
+            </div>
+
+            <div class="suggestions-section">
+                <h3>💡 General Writing Tips</h3>
+                <div class="suggestion-item">
+                    <div class="suggestion-title">Continue Good Practices</div>
+                    <div class="suggestion-text">Keep practicing regular writing to maintain and improve your skills. Consistent practice helps with muscle memory and letter formation.</div>
+                </div>
+                <div class="suggestion-item">
+                    <div class="suggestion-title">Stay Aware</div>
+                    <div class="suggestion-text">If you notice any changes in your reading or writing abilities, don't hesitate to seek professional advice.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="button back-button" onclick="goToHome()">
+                ← Back to Home
+            </button>
+            <button class="button download-button" onclick="downloadResults()">
+                📥 Download Report
+            </button>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>-->
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dyslexia Analysis Results</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <style>
+        .container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .button {
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .button {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Analysis Results</h1>
+            <p>Here are the results from your handwriting analysis</p>
+        </div>
+
+        // Result for Positive Dyslexia Detection 
+        {% if is_dyslexic == 1 %}
+        <div class="result-container">
+            <div class="result-positive">
+                <div class="result-title">
+                    <span class="result-icon">⚠️</span>
+                    Dyslexia Indicators Detected
+                </div>
+                <div class="result-description">
+                    Based on our analysis, we've identified patterns in your handwriting that may indicate dyslexia. Please note that this is a preliminary assessment and should be discussed with a healthcare professional for proper diagnosis.
+                </div>
+                
+                <div class="confidence-bar">
+                    <div class="confidence-fill confidence-medium" style="width: 75%;"></div>
+                </div>
+                <div class="confidence-text">Confidence Level: 75%</div>
+            </div>
+
+            {% if ocr_text %}
+            <div class="text-section">
+                <h3>📝 Original Text (OCR)</h3>
+                <div class="text-content">
+                    {{ ocr_text }}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if corrected_text %}
+            <div class="text-section">
+                <h3>✏️ Corrected Text</h3>
+                <div class="text-content">
+                    {{ corrected_text }}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if suggested_text %}
+            <div class="text-section">
+                <h3>💡 Suggested Text</h3>
+                <div class="text-content">
+                    {{ suggested_text }}
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="suggestions-section">
+                <h3>💡 Recommendations & Support</h3>
+                <div class="suggestion-item">
+                    <div class="suggestion-title">Reading Techniques</div>
+                    <div class="suggestion-text">Use a ruler or finger to track lines while reading. Consider using colored overlays or special fonts designed for dyslexia.</div>
+                </div>
+                <div class="suggestion-item">
+                    <div class="suggestion-title">Writing Support</div>
+                    <div class="suggestion-text">Practice letter formation with large, spaced letters. Use graph paper to help with spacing and alignment.</div>
+                </div>
+                <div class="suggestion-item">
+                    <div class="suggestion-title">Professional Support</div>
+                    <div class="suggestion-text">Consider consulting with a learning specialist or educational psychologist for comprehensive assessment and personalized strategies.</div>
+                </div>
+                <div class="suggestion-item">
+                    <div class="suggestion-title">Technology Tools</div>
+                    <div class="suggestion-text">Explore text-to-speech software, spell checkers, and apps designed specifically for dyslexic learners.</div>
+                </div>
+            </div>
+        </div>
+
+        // Result for Negative Dyslexia Detection 
+        {% else %}
+        <div class="result-container">
+            <div class="result-negative">
+                <div class="result-title">
+                    <span class="result-icon">✅</span>
+                    No Dyslexia Indicators Detected
+                </div>
+                <div class="result-description">
+                    Great news! Our analysis of your handwriting sample shows no significant indicators of dyslexia. Your writing patterns appear to be within normal ranges. However, if you continue to experience reading or writing difficulties, we recommend consulting with a healthcare professional.
+                </div>
+                
+                <div class="confidence-bar">
+                    <div class="confidence-fill confidence-high" style="width: 90%;"></div>
+                </div>
+                <div class="confidence-text">Confidence Level: 90%</div>
+            </div>
+
+            {% if ocr_text %}
+            <div class="text-section">
+                <h3>📝 Analyzed Text</h3>
+                <div class="text-content">
+                    {{ ocr_text }}
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="suggestions-section">
+                <h3>💡 General Writing Tips</h3>
+                <div class="suggestion-item">
+                    <div class="suggestion-title">Continue Good Practices</div>
+                    <div class="suggestion-text">Keep practicing regular writing to maintain and improve your skills. Consistent practice helps with muscle memory and letter formation.</div>
+                </div>
+                <div class="suggestion-item">
+                    <div class="suggestion-title">Stay Aware</div>
+                    <div class="suggestion-text">If you notice any changes in your reading or writing abilities, don't hesitate to seek professional advice.</div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="action-buttons">
+            <button class="button back-button" onclick="goToHome()">
+                ← Back to Home
+            </button>
+            <button class="button download-button" onclick="downloadResults()">
+                📥 Download Report
+            </button>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dyslexia Analysis Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .button {
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .probability-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .probability-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .probability-value {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .probability-high {
+            color: #e74c3c;
+        }
+
+        .probability-medium {
+            color: #f39c12;
+        }
+
+        .probability-low {
+            color: #27ae60;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .button {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Analysis Results</h1>
+            <p>Here are the results from your handwriting analysis</p>
+        </div>
+
+        <!-- Result for Positive Dyslexia Detection -->
+        {% if is_dyslexic == 1 %}
+        <div class="result-container">
+            <div class="result-positive">
+                <div class="result-title">
+                    <span class="result-icon">⚠️</span>
+                    Dyslexia Indicators Detected
+                </div>
+                <div class="result-description">
+                    Based on our analysis, we've identified patterns in your handwriting that may indicate dyslexia. Please note that this is a preliminary assessment and should be discussed with a healthcare professional for proper diagnosis.
+                </div>
+                
+                <!-- Probability Section -->
+                {% if probability %}
+                <div class="probability-section">
+                    <div class="probability-title"> Detection Probability</div>
+                    <div class="probability-value {% if probability >= 0.7 %}probability-high{% elif probability >= 0.4 %}probability-medium{% else %}probability-low{% endif %}">
+                        {{ "%.1f" | format(probability * 100) }}%
+                    </div>
+                    <div class="probability-description">
+                        {% if probability >= 0.7 %}
+                        High probability of dyslexia indicators
+                        {% elif probability >= 0.4 %}
+                        Moderate probability of dyslexia indicators
+                        {% else %}
+                        Low probability of dyslexia indicators
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+                
+                <div class="confidence-bar">
+                    <div class="confidence-fill confidence-medium" style="width: {% if probability %}{{ probability * 100 }}%{% else %}75%{% endif %};"></div>
+                </div>
+                <div class="confidence-text">Confidence Level: {% if probability %}{{ "%.0f" | format(probability * 100) }}%{% else %}75%{% endif %}</div>
+            </div>
+
+            {% if ocr_text %}
+            <div class="text-section">
+                <h3> Original Text (OCR)</h3>
+                <div class="text-content">
+                    {{ ocr_text }}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if corrected %}
+            <div class="text-section">
+                <h3>✏️ Corrected Text</h3>
+                <div class="text-content">
+                    {{ corrected}}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if suggested_text %}
+            <div class="text-section">
+                <h3> Suggested Text</h3>
+                <div class="text-content">
+                    {{ suggested_text }}
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="suggestions-section">
+                <h3> Recommendations & Support</h3>
+                <div class="suggestion-item">
+                    <div class="suggestion-title">Reading Techniques</div>
+                    <div class="suggestion-text">Use a ruler or finger to track lines while reading. Consider using colored overlays or special fonts designed for dyslexia.</div>
+                </div>
+                <div class="suggestion-item">
+                    <div class="suggestion-title">Writing Support</div>
+                    <div class="suggestion-text">Practice letter formation with large, spaced letters. Use graph paper to help with spacing and alignment.</div>
+                </div>
+                <div class="suggestion-item">
+                    <div class="suggestion-title">Professional Support</div>
+                    <div class="suggestion-text">Consider consulting with a learning specialist or educational psychologist for comprehensive assessment and personalized strategies.</div>
+                </div>
+                <div class="suggestion-item">
+                    <div class="suggestion-title">Technology Tools</div>
+                    <div class="suggestion-text">Explore text-to-speech software, spell checkers, and apps designed specifically for dyslexic learners.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result for Negative Dyslexia Detection -->
+        {% else %}
+        <div class="result-container">
+            <div class="result-negative">
+                <div class="result-title">
+                    <span class="result-icon"></span>
+                    No Dyslexia Indicators Detected
+                </div>
+                <div class="result-description">
+                    Great news! Our analysis of your handwriting sample shows no significant indicators of dyslexia. Your writing patterns appear to be within normal ranges. However, if you continue to experience reading or writing difficulties, we recommend consulting with a healthcare professional.
+                </div>
+                
+                <!-- Probability Section for Negative Result -->
+                {% if probability %}
+                <div class="probability-section">
+                    <div class="probability-title"> Detection Probability</div>
+                    <div class="probability-value probability-low">
+                        {{ "%.1f" | format(probability * 100) }}%
+                    </div>
+                    <div class="probability-description">
+                        Low probability of dyslexia indicators detected
+                    </div>
+                </div>
+                {% endif %}
+                
+                <div class="confidence-bar">
+                    <div class="confidence-fill confidence-high" style="width: {% if probability %}{{ (1 - probability) * 100 }}%{% else %}90%{% endif %};"></div>
+                </div>
+                <div class="confidence-text">Confidence Level: {% if probability %}{{ "%.0f" | format((1 - probability) * 100) }}%{% else %}90%{% endif %}</div>
+            </div>
+
+            <div class="suggestions-section">
+                <h3> General Writing Tips</h3>
+                <div class="suggestion-item">
+                    <div class="suggestion-title">Continue Good Practices</div>
+                    <div class="suggestion-text">Keep practicing regular writing to maintain and improve your skills. Consistent practice helps with muscle memory and letter formation.</div>
+                </div>
+                <div class="suggestion-item">
+                    <div class="suggestion-title">Stay Aware</div>
+                    <div class="suggestion-text">If you notice any changes in your reading or writing abilities, don't hesitate to seek professional advice.</div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="action-buttons">
+            <button class="button back-button" onclick="goToHome()">
+                ← Back to Home
+            </button>
+            <button class="button download-button" onclick="downloadResults()">
+                 Download Report
+            </button>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
