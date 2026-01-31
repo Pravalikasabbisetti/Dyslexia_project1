@@ -20,3 +20,38 @@ env/
 .DS_Store
 Thumbs.db
 
+# Virtual Environment
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Data & images
+data/
+*.jpg
+*.jpeg
+*.png
+*.webp
+
+# Model files
+*.h5
+*.pth
+*.pt
+*.onnx
+*.ckpt
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Flask
+instance/
+
